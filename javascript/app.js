@@ -19,6 +19,7 @@ $("button").on("click", function() {
                 var p = $("<p>").text("Rating: " + rating);
                 var itemImage = $("<img>");
                 itemImage.attr("src", results[i].images.fixed_height.url);
+                itemImage.attr("data-state", results[i].images.fixed_height_still);
                 gifDiv.prepend(p);
                 gifDiv.prepend(itemImage);
                 $("#gifs-show-here").prepend(gifDiv);
