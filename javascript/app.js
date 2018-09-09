@@ -5,19 +5,32 @@ var foods = ["ice cream", "peanut  butter", "cookies", "pizza", "pie", "donuts",
 
 // Function for creating buttons for the different foods when the page loads
 var createButtons = function() {
+
     $("#gif-buttons").empty();
 
     for (var i = 0; i < foods.length; i++) {
         var create = $("<button>");
         create.addClass("btn btn-success");
+        create.attr("id", "category");
         create.attr("data-item", foods[i]);
         create.text(foods[i]);
         $("#gif-buttons").append(create);
     }
 };
 
+// Click event to add a users favorite food to the array
+$("#add-food").on("click", function() {
+
+    event.preventDefault();
+
+    var newFood = $("#new-food").val().trim();
+    foods.push(newFood);
+    createButtons();
+})
+
 // Creating a click event for the category buttons
-$("button").on("click", function() {
+$("#category").on("click", function() {
+
 var item = $(this).attr("data-item");
 
 var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + item + "&api_key=JxsL9Labq5Ixvtcc2cdoaKZC5Y9i3Dxf&limit=10";
@@ -38,7 +51,7 @@ $.ajax({
             itemImage.attr("data-still", results[i].images.fixed_height_still.url);
             itemImage.attr("data-animate", results[i].images.fixed_height.url);
             itemImage.attr("data-state", "still");
-            itemImage.addClass("gif-button");
+            itemImage.addClass("gif");
             gifDiv.prepend(p);
             gifDiv.prepend(itemImage);
             $("#gifs-show-here").prepend(gifDiv);
@@ -47,7 +60,7 @@ $.ajax({
 });
 
 // A click event to play the gifs
-$(".gif-button").on("click", function() {
+$(".gif").on("click", function() {
     
     var gifState = $(this).attr("data-state");
 
