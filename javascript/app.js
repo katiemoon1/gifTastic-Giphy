@@ -28,12 +28,12 @@ $("#add-food").on("click", function() {
     createButtons();
 })
 
-// Creating a click event for the category buttons
-$("#category").on("click", function() {
+// Creating a function that houses the AJAX request for the category buttons
+var showGifs = function() {
 
 var item = $(this).attr("data-item");
 
-var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + item + "&api_key=JxsL9Labq5Ixvtcc2cdoaKZC5Y9i3Dxf&limit=10";
+var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + item + "&api_key=JxsL9Labq5Ixvtcc2cdoaKZC5Y9i3Dxf&limit=10";
 
 $.ajax({
     url: queryURL,
@@ -57,7 +57,7 @@ $.ajax({
             $("#gifs-show-here").prepend(gifDiv);
         }
     });
-});
+};
 
 // A click event to play the gifs
 $(".gif").on("click", function() {
@@ -72,6 +72,9 @@ $(".gif").on("click", function() {
         $(this).attr("data-state", "still");
     }
 });
+
+// Click event for creating the gifs for each button
+$(document).on("click", "#category", showGifs);
 
 // Calling functions
 createButtons();
