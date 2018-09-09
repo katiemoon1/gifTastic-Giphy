@@ -60,7 +60,7 @@ $.ajax({
 };
 
 // A click event to play the gifs
-$(".gif").on("click", function() {
+var playGifs = function() {
     
     var gifState = $(this).attr("data-state");
 
@@ -71,10 +71,13 @@ $(".gif").on("click", function() {
         $(this).attr("scr", $(this).attr("data-still"));
         $(this).attr("data-state", "still");
     }
-});
+};
 
 // Click event for creating the gifs for each button
 $(document).on("click", "#category", showGifs);
+
+// Click event for playing the  gifs
+$(document).on("click", ".gif", playGifs);
 
 // Calling functions
 createButtons();
