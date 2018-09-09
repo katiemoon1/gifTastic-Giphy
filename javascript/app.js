@@ -1,5 +1,21 @@
 $(document).ready(() => {
 
+// Array of favorite foods
+var foods = ["ice cream", "peanut  butter", "cookies", "pizza", "pie", "donuts", "pasta"]
+
+// Function for creating buttons for the different foods when the page loads
+var createButtons = function() {
+    $("#gif-buttons").empty();
+
+    for (var i = 0; i < foods.length; i++) {
+        var create = $("<button>");
+        create.addClass("btn btn-success");
+        create.attr("data-item", foods[i]);
+        create.text(foods[i]);
+        $("#gif-buttons").append(create);
+    }
+};
+
 // Creating a click event for the category buttons
 $("button").on("click", function() {
 var item = $(this).attr("data-item");
@@ -44,5 +60,7 @@ $(".gif-button").on("click", function() {
     }
 });
 
+// Calling functions
+createButtons();
 
 });
