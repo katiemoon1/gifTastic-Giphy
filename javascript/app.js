@@ -65,10 +65,10 @@ var playGifs = function() {
     var gifState = $(this).attr("data-state");
 
     if (gifState === "still") {
-        $(this).attr("scr", $(this).attr("data-animate"));
+        $(this).attr("src", $(this).attr("data-animate"));
         $(this).attr("data-state", "animate");
     } else {
-        $(this).attr("scr", $(this).attr("data-still"));
+        $(this).attr("src", $(this).attr("data-still"));
         $(this).attr("data-state", "still");
     }
 };
